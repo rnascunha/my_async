@@ -1,5 +1,5 @@
 include_directories(../include ${Boost_INCLUDE_DIRS})
-add_library(my_async serial_util.cpp)
+add_library(my_async serial_util.cpp byte_array.cpp)
 
 set_target_properties(my_async PROPERTIES
     CXX_STANDARD 17
