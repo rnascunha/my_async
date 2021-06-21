@@ -39,7 +39,7 @@ class Listener_Share :
 		using ssl_context = struct{};
 #endif
 //		std::shared_ptr<std::unordered_set<Session*>> share_;
-		std::shared_ptr<Shareable<Session>> share_;
+		std::shared_ptr<My_Async::Util::Shareable<Session>> share_;
 	public:
 		static constexpr const bool use_ssl = Session::use_ssl;
 
@@ -48,7 +48,7 @@ class Listener_Share :
 			: ioc_(ioc)
 			, acceptor_(boost::asio::make_strand(ioc))
 		{
-			share_ = std::make_shared<Shareable<Session>>();
+			share_ = std::make_shared<My_Async::Util::Shareable<Session>>();
 		}
 
 #if USE_SSL == 1

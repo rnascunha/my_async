@@ -10,8 +10,6 @@
 namespace My_Async{
 namespace Util{
 
-struct empty{};
-
 template<typename ShareClass, typename Data_Share = empty>
 class Shareable
 {
