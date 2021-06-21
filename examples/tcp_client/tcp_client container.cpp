@@ -2,7 +2,7 @@
 
 #include "my_async.hpp"
 #include <memory>
-#include "byte_array.h"
+#include "my_async/util/byte_array.h"
 
 #include "load_certificate.hpp"
 #include <iostream>

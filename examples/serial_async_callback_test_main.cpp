@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "byte_array.h"
+#include "my_async/util/byte_array.h"
 #include "my_async/my_async.hpp"
 
 #define SERIAL_PORT_NAME	"/dev/ttyUSB0"
