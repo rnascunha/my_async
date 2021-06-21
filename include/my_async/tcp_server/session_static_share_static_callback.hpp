@@ -2,8 +2,8 @@
 #define MY_ASYNC_TCP_SERVER_SESSION_STATIC_SHARE_STATIC_CALLBACK_HPP__
 
 #include "session_base.hpp"
-#include "../util/static_callback.hpp"
-#include "util/static_shareable.hpp"
+#include "my_async/util/static_callback.hpp"
+#include "my_async/util/static_shareable.hpp"
 
 namespace My_Async{
 namespace TCP{
@@ -16,7 +16,7 @@ class Session_Static_Share_Static_Callback final :
 		public Session_Base<Session_Static_Share_Static_Callback<UseSSL, InContainer, OutContainer, ReadBufferSize>,
 							UseSSL, InContainer, OutContainer, ReadBufferSize>,
 		public My_Async::Util::Static_Callback<Session_Static_Share_Static_Callback<UseSSL, InContainer, OutContainer, ReadBufferSize>, InContainer>,
-		public Static_Shareable<Session_Static_Share_Static_Callback<UseSSL, InContainer, OutContainer, ReadBufferSize>, false>,
+		public My_Async::Util::Static_Shareable<Session_Static_Share_Static_Callback<UseSSL, InContainer, OutContainer, ReadBufferSize>, false>,
 		public std::enable_shared_from_this<Session_Static_Share_Static_Callback<UseSSL, InContainer, OutContainer, ReadBufferSize>>
 {
 	using self_type = Session_Static_Share_Static_Callback<UseSSL, InContainer, OutContainer, ReadBufferSize>;

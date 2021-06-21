@@ -3,7 +3,7 @@
 
 #include "session_base.hpp"
 #include "../util/static_callback.hpp"
-#include "util/shareable.hpp"
+#include "my_async/util/shareable.hpp"
 
 namespace My_Async{
 namespace TCP{
@@ -29,14 +29,14 @@ class Session_Share_Static_Callback final :
 		Session_Share_Static_Callback(
 			boost::asio::basic_stream_socket<boost::asio::ip::tcp>&& stream,
 			boost::asio::ssl::context& ctx,
-			std::shared_ptr<Shareable<self_type>> share)
+			std::shared_ptr<My_Async::Util::Shareable<self_type>> share)
 			: base_type(std::move(stream), ctx), share_(share){}
 #endif
 		//Plain contructor
 		explicit
 		Session_Share_Static_Callback(
 			boost::asio::basic_stream_socket<boost::asio::ip::tcp>&& stream,
-			std::shared_ptr<Shareable<self_type>> share)
+			std::shared_ptr<My_Async::Util::Shareable<self_type>> share)
 		  : base_type(std::move(stream)), share_(share){}
 
 		void write_all(OutContainer const data)
@@ -50,7 +50,7 @@ class Session_Share_Static_Callback final :
 			);
 		}
 	protected:
-		std::shared_ptr<Shareable<self_type>> share_;
+		std::shared_ptr<My_Async::Util::Shareable<self_type>> share_;
 
 		virtual void read_handler(InContainer data) noexcept override{
 			if(self_type::on_message_f) self_type::on_message_f(this->shared_from_this(), data);

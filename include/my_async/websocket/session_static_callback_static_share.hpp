@@ -3,7 +3,7 @@
 
 #include <memory>
 #include "session_base.hpp"
-#include "util/static_shareable.hpp"
+#include "my_async/util/static_shareable.hpp"
 
 namespace My_Async{
 namespace Websocket{
@@ -15,13 +15,13 @@ template<bool UseSSL,
 class Session_Static_Callback_Static_Share final :
 		public Session_Base<Session_Static_Callback_Static_Share<UseSSL, InContainer, OutContainer, ReadBufferSize>,
 				UseSSL, InContainer, OutContainer, ReadBufferSize>
-		, public Static_Shareable<Session_Static_Callback_Static_Share<UseSSL, InContainer, OutContainer, ReadBufferSize>, false>
+		, public My_Async::Util::Static_Shareable<Session_Static_Callback_Static_Share<UseSSL, InContainer, OutContainer, ReadBufferSize>, false>
 		, public std::enable_shared_from_this<Session_Static_Callback_Static_Share<UseSSL, InContainer, OutContainer, ReadBufferSize>>
 {
 		using self_type = Session_Static_Callback_Static_Share<UseSSL, InContainer, OutContainer, ReadBufferSize>;
 		using base_type = Session_Base<Session_Static_Callback_Static_Share<UseSSL, InContainer, OutContainer, ReadBufferSize>,
 				UseSSL, InContainer, OutContainer, ReadBufferSize>;
-		using shared_type = Static_Shareable<Session_Static_Callback_Static_Share<UseSSL, InContainer, OutContainer, ReadBufferSize>, false>;
+		using shared_type = My_Async::Util::Static_Shareable<Session_Static_Callback_Static_Share<UseSSL, InContainer, OutContainer, ReadBufferSize>, false>;
 
 	public:
 		using on_open_t = std::function<void(std::shared_ptr<self_type>)>;
