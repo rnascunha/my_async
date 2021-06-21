@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <boost/asio.hpp>
-#include "byte_array.h"
+#include "my_async/util/byte_array.h"
 
 /**
  * Este conceito só funciona para o metodo write com Byte_Array como Argumento. O ideal seria generalizar para
