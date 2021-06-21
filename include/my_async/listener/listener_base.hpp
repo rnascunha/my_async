@@ -11,10 +11,10 @@
 #include <type_traits>
 #include <iostream>
 
-#include "types/traits.hpp"
+#include "my_async/util/traits.hpp"
 #include "my_async/traits.hpp"
 
-#include "util/shareable.hpp"
+#include "my_async/util/shareable.hpp"
 
 namespace My_Async{
 namespace Listener{
@@ -24,7 +24,7 @@ template<typename Session, bool MakeStrand = true>
 class Listener_Base :
 		public std::enable_shared_from_this<Listener_Base<Session, MakeStrand>>
 {
-		static constexpr const bool is_shareable = my_traits::is_shareable<Session>::value;
+		static constexpr const bool is_shareable = My_Async::Util::is_shareable<Session>::value;
 
 		boost::asio::io_context& ioc_;
 		boost::asio::ip::tcp::acceptor acceptor_;
@@ -37,8 +37,8 @@ class Listener_Base :
 #else
 		using ssl_context = struct{};
 #endif
-		using shareable = my_traits::exclude_attr_if<is_shareable,
-				std::shared_ptr<Shareable<Session, typename Session::shareable_data_type>>>;
+		using shareable = My_Async::Util::exclude_attr_if<is_shareable,
+				std::shared_ptr<My_Async::Util::Shareable<Session, typename Session::shareable_data_type>>>;
 		shareable share_;
 	public:
 		static constexpr const bool use_ssl = Session::use_ssl;
@@ -51,7 +51,7 @@ class Listener_Base :
 			, acceptor_(boost::asio::make_strand(ioc))
 		{
 			if constexpr(is_shareable)
-				share_ = std::make_shared<Shareable<Session, typename Session::shareable_data_type>>();
+				share_ = std::make_shared<My_Async::Util::Shareable<Session, typename Session::shareable_data_type>>();
 		}
 #if USE_SSL == 1
 		Listener_Base(
@@ -61,7 +61,7 @@ class Listener_Base :
 				, ctx_(ctx)
 		{
 			if constexpr(is_shareable)
-				share_ = std::make_shared<Shareable<Session, typename Session::shareable_data_type>>();
+				share_ = std::make_shared<My_Async::Util::Shareable<Session, typename Session::shareable_data_type>>();
 		}
 #endif
 		virtual ~Listener_Base(){}

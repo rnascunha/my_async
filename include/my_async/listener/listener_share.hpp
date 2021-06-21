@@ -12,12 +12,12 @@
 #include <type_traits>
 #include <iostream>
 
-#include "types/traits.hpp"
+#include "my_async/util/traits.hpp"
 #include "my_async/traits.hpp"
 
 #include <memory>
 //#include <unordered_set>
-#include "util/shareable.hpp"
+#include "my_async/util/shareable.hpp"
 
 namespace My_Async{
 namespace Listener{
@@ -32,7 +32,7 @@ class Listener_Share :
 
 #if USE_SSL == 1
 		//Check if the session is SSL. If not, exclude ctx_ attriute
-		using ssl_context = my_traits::exclude_attr_if<
+		using ssl_context = My_Async::Util::exclude_attr_if<
 				Session::use_ssl, boost::asio::ssl::context&>;
 		ssl_context ctx_;
 #else

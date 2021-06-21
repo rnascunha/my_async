@@ -9,7 +9,7 @@
 #include "types.hpp"
 
 #include "listener_base.hpp"
-#include "types/traits.hpp"
+#include "my_async/util/traits.hpp"
 
 #include <boost/asio.hpp>
 
@@ -58,7 +58,7 @@ class Simple_Container{
 
 #if USE_SSL == 1
 		//Check if the session is SSL. If not, exclude ctx_ attribute
-		using ssl_context = my_traits::exclude_attr_if<
+		using ssl_context = My_Async::Util::exclude_attr_if<
 				Listener::use_ssl, boost::asio::ssl::context&>;
 		ssl_context ctx_;
 #else

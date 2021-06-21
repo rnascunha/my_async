@@ -2,7 +2,6 @@
 #define SERIAL_ASYNC_STATIC_CALLBACK_IMPL_HPP__
 
 #include <functional>
-#include "byte_array.h"
 
 namespace My_Async{
 namespace Serial{
