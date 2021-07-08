@@ -83,7 +83,7 @@ class Container{
 		boost::asio::io_context& ioc_;
 
 #if USE_SSL == 1
-		using ssl_context = my_traits::exclude_attr_if<
+		using ssl_context = My_Async::Util::exclude_attr_if<
 				SupportSSL, boost::asio::ssl::context&>;
 		ssl_context ctx;
 #else

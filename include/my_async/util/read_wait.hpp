@@ -2,8 +2,8 @@
 #define READ_WAIT_ASYNC_HPP__
 
 #include <chrono>
-
-#include "../../../../utility/include/types/traits.hpp"
+#include "boost/asio.hpp"
+#include "traits.hpp"
 
 namespace My_Async{
 namespace Util{
@@ -13,7 +13,7 @@ template<typename InContainer,
 		typename Duration = std::chrono::milliseconds>
 class Read_Wait{
 	public:
-    	static_assert(my_traits::is_chrono_duration<Duration>::value, "duration must be a std::chrono::duration");
+    	static_assert(My_Async::Util::is_chrono_duration<Duration>::value, "duration must be a std::chrono::duration");
 
 		Read_Wait(boost::asio::io_context& ioc) : read_wait_timer_(ioc){};
 		virtual ~Read_Wait(){}
